@@ -3,6 +3,12 @@ const { sql } = require('@vercel/postgres');
 const express = require('express')
 const app = express();
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+	customCss:
+		'.swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }',
+	customCssUrl: CSS_URL,
+}));
+
 // enable middleware to parse body of Content-type: application/json
 app.use(express.json());
 
